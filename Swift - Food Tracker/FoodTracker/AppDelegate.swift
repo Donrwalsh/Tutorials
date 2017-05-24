@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  FoodTracker
 //
-//  Created by Laura Farvour on 5/23/17.
+//  Created by Don Walsh on 5/23/17.
 //  Copyright © 2017 Bigbrass. All rights reserved.
 //
 
