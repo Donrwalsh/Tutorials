@@ -1,0 +1,17 @@
+//- div.wrapper
+		- const upDog = dog.toUpperCase(); //-
+		p.hello Hello my dogs name is #{upDog} 
+		img.dog(src="dog.jpg" alt=`Dog #{dog}`)
+
+	h2
+		| Hello
+		em How are you?
+
+	//-These are examples of basic pug, and getting data from the route.
+
+extends layout
+
+block content
+	p Hello
+
+	//-Extending layout.pug in the views folder by replacing blocks with my own content.
