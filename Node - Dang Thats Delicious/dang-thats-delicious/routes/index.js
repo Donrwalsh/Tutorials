@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
   //res.send(req.query.name); //For URL data submission localhost:7777/?name=Don
   res.render('hello', { 
   	name: 'wes',
-  	dog: req.query.dog
+  	dog: req.query.dog,
+  	title: 'I love food'
   });
 
 });
