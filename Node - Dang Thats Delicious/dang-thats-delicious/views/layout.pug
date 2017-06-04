@@ -38,7 +38,6 @@ html
 
     block messages
       if locals.flashes
-        //- pre= h.dump(locals) | Visually view the data available in the locals object.
         .inner
           .flash-messages
             - const categories = Object.keys(locals.flashes)
