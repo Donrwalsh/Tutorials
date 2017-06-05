@@ -36,12 +36,18 @@ const storeSchema = new mongoose.Schema({
 });
 
 //Note, this block below is not updating slugs.
-storeSchema.pre('save', function(next) {
+storeSchema.pre('save', async function(next) {
 	if (!this.isModified('name')) {
 		next(); // skip it
 		return; // stop this function from running if the name didn't change
 	}
 	this.slug = slug(this.name);
+	// find other stores that have a slug of store, store-1, store-2
+	const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
+	const storesWithSlug = await this.constructor.find({ slug: slugRegEx });
+	if(storesWithSlug.length) {
+		this.slug = `${this.slug}-${storesWithSlug.length +1 }`;
+	}
 	next();
 });
 
