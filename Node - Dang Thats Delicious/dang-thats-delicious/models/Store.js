@@ -34,6 +34,7 @@ const storeSchema = new mongoose.Schema({
 	}
 });
 
+//Note, this block below is not updating slugs.
 storeSchema.pre('save', function(next) {
 	if (!this.isModified('name')) {
 		next(); // skip it
