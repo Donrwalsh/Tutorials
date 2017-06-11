@@ -55,7 +55,8 @@ router.get('/map', storeController.mapPage);
 	API
 */
 
-router.get('/api/v1/search', catchErrors(storeController.searchStores))
-router.get('/api/v1/stores/near', catchErrors(storeController.mapStores))
+router.get('/api/v1/search', catchErrors(storeController.searchStores));
+router.get('/api/v1/stores/near', catchErrors(storeController.mapStores));
+router.post('/api/stores/:id/heart', catchErrors(storeController.heartStore));
 
 module.exports = router;
