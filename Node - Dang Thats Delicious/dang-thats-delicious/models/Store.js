@@ -46,6 +46,8 @@ storeSchema.index({
 	description: 'text'
 });
 
+storeSchema.index({ location: '2dsphere' });
+
 //Note, this block below is not updating slugs.
 storeSchema.pre('save', async function(next) {
 	if (!this.isModified('name')) {
