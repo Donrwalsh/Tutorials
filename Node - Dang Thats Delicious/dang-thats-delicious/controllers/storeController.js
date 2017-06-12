@@ -92,6 +92,7 @@ exports.getStoreBySlug = async (req, res, next) => {
 	if(!store) return next();
 	res.render('store', { store, title: store.name })
 }
+
 exports.getStoresByTag = async (req, res) => {
 	const tag = req.params.tag;
 	const tagQuery = tag || { $exists: true };
@@ -153,3 +154,11 @@ exports.heartStore = async (req, res) => {
 	);
 	res.json(user);
 };
+
+exports.getHearts = async (req, res) => {
+	const hearts = req.user.hearts.map(obj => obj.toString());
+	const stores = await Store.find({
+		'_id': { $in: hearts}
+	})
+	res.render('stores', { title: 'Hearted Stores', stores});
+}
