@@ -1,1 +1,6 @@
+Node - Dang Thats Delicious/node_modules/
+.DS_Store
+*.log
+.idea
 Node - Dang Thats Delicious/dang-thats-delicious/variables.env
+Node - Dang Thats Delicious/dang-thats-delicious/variables.env.now
