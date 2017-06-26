@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import tkinter as tk
+from tkinter import PhotoImage
+from tkinter import ttk # essentially the CSS for tkinter
 
 LARGE_FONT = ("Verdana", 12)
 
@@ -10,6 +12,11 @@ class wifiAnalyzer(tk.Tk):
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self) #Let's also initiate tkinter
+
+        img = PhotoImage(file='icons8-Wi-Fi-64.png')
+
+        tk.call('wm', 'iconphoto', self._w, img)
+
         container = tk.Frame(self) #Essentially a 'window' in the form of a frame.
 
         # Two types of formatting for tkinter apps, pack and grid:
@@ -47,10 +54,10 @@ class StartPage(tk.Frame):
         label = tk.Label(self, text="Start Page", font=LARGE_FONT) #Basic syntax idea, here we have made an object
         label.pack(pady=10, padx=10)                               #and this will display the object we created, with params
 
-        button1 = tk.Button(self, text="Visit Page 1", command=lambda:controller.show_frame(PageOne))
+        button1 = ttk.Button(self, text="Visit Page 1", command=lambda:controller.show_frame(PageOne))
         button1.pack()
 
-        button2 = tk.Button(self, text="Visit Page 2", command=lambda: controller.show_frame(PageTwo))
+        button2 = ttk.Button(self, text="Visit Page 2", command=lambda: controller.show_frame(PageTwo))
         button2.pack()
 
 class PageOne(tk.Frame):
@@ -60,10 +67,10 @@ class PageOne(tk.Frame):
         label = tk.Label(self, text="Page One", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
-        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
+        button1 = ttk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
-        button2 = tk.Button(self, text="Visit Page 2", command=lambda: controller.show_frame(PageTwo))
+        button2 = ttk.Button(self, text="Visit Page 2", command=lambda: controller.show_frame(PageTwo))
         button2.pack()
 
 class PageTwo(tk.Frame):
@@ -73,10 +80,10 @@ class PageTwo(tk.Frame):
         label = tk.Label(self, text="Page Two", font=LARGE_FONT)
         label.pack(pady=10, padx=10)
 
-        button1 = tk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
+        button1 = ttk.Button(self, text="Back to Home", command=lambda: controller.show_frame(StartPage))
         button1.pack()
 
-        button2 = tk.Button(self, text="Page One", command=lambda: controller.show_frame(PageOne))
+        button2 = ttk.Button(self, text="Page One", command=lambda: controller.show_frame(PageOne))
         button2.pack()
 
 app = wifiAnalyzer()
