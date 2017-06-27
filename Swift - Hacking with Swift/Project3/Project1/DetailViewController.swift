@@ -2,11 +2,12 @@
 //  DetailViewController.swift
 //  Project1
 //
-//  Created by Laura Farvour on 6/26/17.
+//  Created by Don Walsh on 6/26/17.
 //  Copyright © 2017 Don Walsh. All rights reserved.
 //
 
 import UIKit
+import Social
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var ImageView: UIImageView!
@@ -16,9 +17,11 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = selectedImage
 
+        title = selectedImage
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
         // Do any additional setup after loading the view.
         if let imageToLoad = selectedImage {
             ImageView.image = UIImage(named: imageToLoad)
@@ -34,6 +37,21 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    func shareTapped() {
+        // General Sharing code:
+        let vc = UIActivityViewController(activityItems: [ImageView.image!], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+        // Facebook specific sharing code:
+        //if let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
+        //    vc.setInitialText("Look at this great picture!")
+        //    vc.add(ImageView.image!)
+        //    vc.add(URL(string: "http://www.photolib.noaa.gov/nssl"))
+        //    present(vc, animated: true)
+        //For twitter, change SlServiceTypeTwitter
+        //}
     }
     
     override func didReceiveMemoryWarning() {
