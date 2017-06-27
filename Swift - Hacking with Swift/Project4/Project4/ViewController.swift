@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Project4
 //
-//  Created by Laura Farvour on 6/27/17.
+//  Created by Don Walsh on 6/27/17.
 //  Copyright © 2017 Don Walsh. All rights reserved.
 //
 
