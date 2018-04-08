@@ -8,10 +8,10 @@ https://github.com/llSourcell/Your_First_Decentralized_Application
 - Also note that the correct address (found via `deployedContract.address`) must be copied to index.js << Failing to do this will cause everything to run normally, but voting transactions will not increment as they are invalid.
 - Ignore all startup instructions other than the bottom of the readme.
 
-#Java - Essential Training: Syntax and Structure
+# Java - Essential Training: Syntax and Structure
 https://www.lynda.com/Java-tutorials/Java-Essential-Training-Syntax-Structure/645026-2.html
 
-#Java - Essential Training: Object and APIs
+# Java - Essential Training: Object and APIs
 https://www.lynda.com/Java-tutorials/Java-Essential-Training-2/679628-2.html
 
 # Node.js - Dang That’s Delicious
