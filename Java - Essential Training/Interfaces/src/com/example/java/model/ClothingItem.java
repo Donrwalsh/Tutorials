@@ -1,6 +1,6 @@
 package com.example.java.model;
 
-public class ClothingItem {
+public class ClothingItem implements Product {
     private String type;
     private String size;
     private double price;
