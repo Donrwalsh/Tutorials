@@ -10,6 +10,9 @@ https://www.lynda.com/Java-tutorials/Java-Essential-Training-Syntax-Structure/64
 # Java - Essential Training: Object and APIs
 https://www.lynda.com/Java-tutorials/Java-Essential-Training-2/679628-2.html
 
+# jQuery - jQuery for Web Designers
+https://www.lynda.com/jQuery-tutorials/jQuery-Web-Designers/461842-2.html
+
 # Node.js - Dang That’s Delicious
 http://wesbos.com/learn-node/
 
