@@ -16,6 +16,9 @@ https://www.lynda.com/Java-tutorials/Java-Essential-Training-2/679628-2.html
 # jQuery - jQuery for Web Designers
 https://www.lynda.com/jQuery-tutorials/jQuery-Web-Designers/461842-2.html
 
+# Kotlin - Kotlin for Java Developers
+https://www.udemy.com/course/kotlin-for-java-developers
+
 # Node.js - Dang That’s Delicious
 http://wesbos.com/learn-node/
 
