@@ -1,5 +1,8 @@
 These are not my own code, they are derived from links below. I am storing them here for my own edification.
 
+# Data Structures and Algorithms - Deep Dive Using Java
+https://www.udemy.com/course/data-structures-and-algorithms-deep-dive-using-java/
+
 # Docker - docs
 https://docs.docker.com/
 
