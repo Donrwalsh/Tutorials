@@ -24,3 +24,26 @@ Algorithm - Instructions on how to achieve a particular task
 * There can be many implementations of the same algorithm
 
 No surprises in this section.
+
+# Section 2: Arrays and Big-O Notation
+
+Basic introduction to Big-O Notation (worst-case) and space/time complexity. 
+
+Arrays
+* Cannot change the size of an array once it is instantiated.
+* Indexes are 0-based.
+* Contiguous block in memory. All of the elements in the array are stored together.
+* Every element occupies the same amount of space in memory.
+* If an array starts at memory address `x`, and the size of each element in the array is `y`, we can calculate the memory address of the `i`th element by using the following expression: `x + i * y`.
+* Thus, if we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array. (which is to say, constant time)
+
+| Operation                                         | Time Complexity |
+|---------------------------------------------------|-----------------|
+| Retrieve with index                               |       O(1)      |
+| Retrieve without index                            |       O(n)      |
+| Add an element to a full array                    |       O(n)      |
+| Add an element to the end of an array (has space) |       O(1)      |
+| Insert or update an element at a specific index   |       O(1)      |
+| Delete an element by setting it to null           |       O(1)      |
+| Delete an element by shifting elements            |       O(n)      |
+
