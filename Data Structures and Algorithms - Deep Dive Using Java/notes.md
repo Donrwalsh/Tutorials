@@ -162,6 +162,7 @@ Stable Version:
 * Can calculate where values should be written back to the original array.
 * Writing the values into the array in backwards order ensures stability.
 * The trick is our tracking array should now hold the number of elements that have that value as well as the number that have less than that value. Then we iterate over our original values from right to left, and the tracking array informs us of the position that the value should hold in the array (in off-by-1 form, so decrement first), which is then decremented by 1 for the next upcoming value. This preserves the original order of the input array which makes this stable version perfect for use as part of Radix sort.
+* Much easier to do this with linked-lists, but those haven't been covered yet at this point in the course.
 
 ### Radix Sort
 
@@ -177,3 +178,42 @@ Details:
 * O(n) - can achieve this because we're making assumptions about the data we're sorting. Even so, it often runs slower than O(n*log*n) algorithms because of the overhead involved.
 * In-place depends on which sort algorithm you use.
 * Stable algorithm (due to the requirement that the sub-sort must be stable)
+
+# Section 4: Lists
+
+[**Lists**](https://docs.oracle.com/javase/8/docs/api/java/util/List.html) are ordered sequences. In Java, they are an abstract data type.
+
+Abstract Data Type:
+* Doesn't dictate how the data is organized.
+* Dictates the operations you can perform.
+* Concrete data structure is usually a concrete class.
+* Abstract data type is usually an interface.
+
+[**ArrayList**](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)
+* ArrayList being backed by an array means we can infer certain things about its performance.
+* Note the difference between capacity and size of an ArrayList.
+
+[**Vector**](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html) is a thread-safe ArrayList. It's been around since 1.0, and used to be the 'go-to' list class. If you use ArrayList with multiple threads that are only reading, then there's no issue but if those threads are also writing then you open yourself up to synchronization issues. Vectors use backing arrays just like ArrayList. . . unsurprisingly there are not a lot of differences between the two, but if you click through to the 'add' method of Vector you'll notice it has the `synchronized` keyword. Synchronization involves some baseline overhead that is best to avoid if you do not need thread-safety.
+
+[**Linked Lists**](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html) are lists where items are aware of the next item in the list. Each item in the list is called a node. The first item in the linked list is called the 'head'.
+* Inserting or deleting from the front of the list takes O(1) time because there is no shifting required as in arrays.
+* Singly Linked Lists have associations going just one direction, from the head down the list to the tail which points to null.
+* Double Linked List understandably has associations going both directions. A node will point to its successor and predecessor with nulls on either side. Working with a node on the front or the end is constant time. Obviously, working with inner elements is just as tricky as with Singly Linked Lists. Here are some examples of this:
+
+To insert a node A between nodes B and C:
+* Assign A's next field to B's next field
+* Assign A's previous field to C's previous field
+* Assign B's next field to A
+* Assign C's previous field to A
+* O(1) time complexity BUT we have to find the insertion position first, so this is actually O(n).
+
+To remove node A from between B and C:
+* Assign A to "removednode"
+* Assign C's previous field to A's previous field
+* Assign B's next field to A's next field
+* Return A from the method
+* O(1) time complexity BUT again we have to ind A first, so this is actually O(n)
+
+(These same approaches can apply to Singly Linked Lists, just omit caring about previous nodes)
+
+**Circular Linked List** is a variation of Singly Linked List where the tail does not point to null, but instead points to the head node. This enables you to traverse the entire list from any node.
