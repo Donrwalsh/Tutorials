@@ -217,3 +217,14 @@ To remove node A from between B and C:
 (These same approaches can apply to Singly Linked Lists, just omit caring about previous nodes)
 
 **Circular Linked List** is a variation of Singly Linked List where the tail does not point to null, but instead points to the head node. This enables you to traverse the entire list from any node.
+
+# Section 5: Stacks
+
+* Abstract data type. Dictates the operations we can perform on a set of data, but doesn't tell us how the data should be stored.
+* LIFO - Last in, first out
+* **push** - adds an item as the top item on the stack
+* **pop** - removes the top item on the stack
+* **peek** - gets the top item on the stack without popping it
+* Ideal backing data structure: Singly Linked List. O(1) for push, pop, and peek. If you use an array, then push is O(n), because the array may have to be resized. Though if you know the maximum number of items that will ever be on the stack, an array can be a good choice. If memory is tight, an array might also be a good choice (no overhead for a LL's next field). Despite all this, Singly Linked Lists are still the ideal backing data structure.
+
+Java has a [Stack](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html) class, but the docs themselves suggest to use a class that extends the Deque interface instead. Linked Lists implement this Deque interface.
