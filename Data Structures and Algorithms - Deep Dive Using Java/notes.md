@@ -228,3 +228,15 @@ To remove node A from between B and C:
 * Ideal backing data structure: Singly Linked List. O(1) for push, pop, and peek. If you use an array, then push is O(n), because the array may have to be resized. Though if you know the maximum number of items that will ever be on the stack, an array can be a good choice. If memory is tight, an array might also be a good choice (no overhead for a LL's next field). Despite all this, Singly Linked Lists are still the ideal backing data structure.
 
 Java has a [Stack](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html) class, but the docs themselves suggest to use a class that extends the Deque interface instead. Linked Lists implement this Deque interface.
+
+# Section 6: Queues
+
+* Abstract data type.
+* FIFO - First in, first out
+* **add** - also called enqueue - add an item to the end of the queue
+* **remove** - also called dequeue - remove the item at the front of the queue
+* **peek** - get the item at the front of the queue, but don't remove it
+
+In the Queues project, we initially implemented the basic ArrayQueue that proceeds in one direction, resizing when `back` would exceed the size of the array. This is not optimal, as empty values may accumulate at the front of the array. An alternative implementation in the UpdatedArrayQueue project implements a 'Circular Queue' that avoids this issue.
+
+[**Deque**](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) is short for Double-Ended-Queue. . . pronounced 'deck'. This modified form of a queue allows you to add and remove from either end of the queue.
