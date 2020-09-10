@@ -240,3 +240,35 @@ Java has a [Stack](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.htm
 In the Queues project, we initially implemented the basic ArrayQueue that proceeds in one direction, resizing when `back` would exceed the size of the array. This is not optimal, as empty values may accumulate at the front of the array. An alternative implementation in the UpdatedArrayQueue project implements a 'Circular Queue' that avoids this issue.
 
 [**Deque**](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) is short for Double-Ended-Queue. . . pronounced 'deck'. This modified form of a queue allows you to add and remove from either end of the queue.
+
+# Section 7: Hashtables
+
+* Abstract data type.
+* Provide access to data using keys, where the key doesn't have to be an integer. (though behind-the-scenes, those values are being converted into integers via hashing)
+* Consists of key/value pairs where the data types of both do not need to match.
+* Optimized for retrieval (when you know the key)
+* Associative array is one type of hash table (This is a PHP thing).
+* In Java, hashing is done by Object.hashCode().
+* Collision may occur when more than one value has the same hashed value.
+* **Load Factor** tells us how full a hash table is. It is equal to the size / capacity. Load factor is used to decide when to resize the array backing the hash table. 
+* Don't want a load factor too low (lots of empty space) and don't want a load factor that is too high (will increase the likelihood of collisions). Load factor can play a role in determining the time complexity for retrieval.
+* **Open Addressing** is a method for avoiding collision that modifies the hashed key if that key has already been occupied. **Linear Probing** is an approach that just increments the hashed key until we find an available key. LessSimpleHashtable.java shows us working to solve some of these collision issues with our simple array-backed hash table.
+* Another strategy for dealing with collisions is called **Chaining**. Essentially each array position is a linked list which allows for many different elements to have the same hash value.
+
+**Bucket Sort**
+
+Description:
+1. Distribute the items into buckets bsed on their hashed values (scattering phase)
+2. Sort the items in each bucket
+3. Merge the buckets - can just concatenate them (gathering phase)
+
+Details
+* Uses hasing
+* Makes assumptions about the data, like radix and counting sort. Because of these assumptions, it can sort in O(n) time.
+* Performs best when hashed values of items being sorted are evenly distributed, so there aren't many collisions.
+* Generalization of counting sort.
+* Requires that the values in bucket X must be greater than the values in bucket X - 1 and less than the values in bucket X + 1. This means that the hash function we use must meet this requirement.
+* Not in-place
+* Stability will depend on sort algorithm used to sort the buckets - ideally, you want a stable sort.
+* To achieve O(n), must have only one item per bucket.
+* Insertion sort is often used to sort the buckets, because it is fast when the number of items is small.
