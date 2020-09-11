@@ -272,3 +272,15 @@ Details
 * Stability will depend on sort algorithm used to sort the buckets - ideally, you want a stable sort.
 * To achieve O(n), must have only one item per bucket.
 * Insertion sort is often used to sort the buckets, because it is fast when the number of items is small.
+
+# Section 8: Search Algorithms
+
+Finding values in a data structure.
+
+**Linear Search Algorithm** - Iterate over the array and examine each element to see if it matches the value you're looking for. O(n) time complexity.
+
+**Binary Search**
+* Data must be sorted!
+* Chooses the element in the middle of the array and compares it against the search value.
+* If element is equal to the value, we're done. If element is greater than the value, search the left half of the array. If the element is less than the value, search the right half of the array. (Very similar to merge-sort)
+* O(*log*n) - can be implemented recursively
