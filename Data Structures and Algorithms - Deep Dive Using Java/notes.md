@@ -284,3 +284,48 @@ Finding values in a data structure.
 * Chooses the element in the middle of the array and compares it against the search value.
 * If element is equal to the value, we're done. If element is greater than the value, search the left half of the array. If the element is less than the value, search the right half of the array. (Very similar to merge-sort)
 * O(*log*n) - can be implemented recursively
+
+# Section 9: Trees
+
+**Trees** - General form
+* Hierarchical data structure
+* Nodes connected to children. Each node can have one and only one parent.
+* Special node in each tree called the 'root' which does not have a parent. Each tree can have one and only one root.
+* Example practical applications given are the Java class hierarchy and a windows file system.
+* A leaf node has no children.
+* Arrows of parents to children are known as 'edges'.
+* A singleton tree has only one node - the root
+* A sub-tree is if you start at any given node, it is that node (as the new root) and all of its descendents.
+* A 'path' is the sequence of nodes required to go from one node to another. Cannot have a path that crosses a single node more than once. A 'root path' is a path going the other direction.
+* The 'depth' of a node is the number of edges from the node to the root. The root will always have a depth of zero.
+* The 'height' of a node is the number of edges on the longest path from a node to a leaf. (leaf nodes always have a height of zero). The height of the tree itself is the height of its root node.
+* The 'ancestors' of a node are other nodes that are found in its path (i.e. nodes between it and the root).
+
+**Binary Trees**
+* Every node has 0, 1, or 2 children. (general trees have no such restriction)
+* Children are referred to as left child and right child.
+* A binary tree is complete if all levels (except the last level) is completely filled and on the last level, all nodes are as left-ward as possible.
+
+**Binary Search Tree (BST)**
+* Can perform insertions, deletions, and retrievals in O(*log*n) time.
+* The left child always has a smaller value than its parent.
+* The right child always has a larger value than its parent
+* this means everything to the left of the root is less than the value of the root, and everything to the right of the root is greater than the value of the root. Because of this, we can very easily do a bineary search on this kind of tree.
+* Find the min or max value by following the leftmost edges or the rightmost edges respectively.
+* Spent some time watching a BST being built from an arbitrary array of integers. Note that the structure of that array heavily influences the resulting structure of the BST (consider how a sorted array produces a linked list). There are some more advanced forms of BSTs that self-arrange themselves when the BST structure is undesirable. Those are not covered in this course though.
+
+**Traversal**
+* Level - visit nodes on each level (not used often at all)
+* Pre-order - visit the root of every subtree first (start at the top, go root-left-right, treating each child as a fresh root)
+* Post-order - visit the root of every subtree last (start at the bottom left, go left-right-root)
+* In-order - visit left child, then root, then right child (note that this results in traversing the data in sorted order, hence the name)
+
+**Delete**
+* Three possibilities when deleting a node: It is a leaf / it has one child / it has two children. First two are easy, 3rd is complex.
+* Deleting a node with 2 children:
+* Need to figure out what the replacement node will be.
+* Want minimal disruption to the existing tree structure.
+* Can take the replacement node from the deleted node's left subtree or right subtree.
+* If taking it from the left subtree, we have to take the largest value in the left subtree
+* If taking it from the right subtree, we have to take the smallest value in the right subtree.
+* Choose one and stick to it.
