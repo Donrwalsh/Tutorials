@@ -329,3 +329,53 @@ Finding values in a data structure.
 * If taking it from the left subtree, we have to take the largest value in the left subtree
 * If taking it from the right subtree, we have to take the smallest value in the right subtree.
 * Choose one and stick to it.
+
+# Section 10: Heaps
+
+**Heaps**
+* A complete binary tree.
+* Must satisfy the heap property.
+* Max heap: Every parent is greater than or equal to its children.
+* Min heap: Every parent is less than or equal to its children.
+* Children are added at each level from left to right ~ generally implemented as arrays.
+* The maximum or minimum value will alawyas be at the root of the tree - the advantage of using a heap.
+* *Heapify*: process of converting a binary tree into a heap - this often has to be done after an insertion or deletion.
+* There is no required ordering between siblings.
+* An interesting fact about a heap is that following any path from the root down to a leaf will always be in ascending order (in the case of a min-heap) or descending order (for a max-heap)
+
+**Heaps as Arrays**
+* We can store binary heaps as arrays
+* We put the root at array[0]
+* We then traverse each level from left to right, and so the left child of the root would go into array[1], its right child would go into array[2], etc.
+* For the node at array[i]:
+    * left child = `2i + 1`
+    * right child = `2i + 2`
+    * parent = `floor((i-1)/2)`
+
+**Insert into Heap**
+* Always add new items to the end of the array
+* Then we have to fix the heap (heapify)
+* We compare the new item against its parent
+* If the item is greater than its parent, we swap it with its parent (assuming max-heap)
+* Then rinse and repeat
+
+**Heaps - Delete**
+* Must choose a replacement value
+* Will take the rightmost value, so that the tree remains complete
+* Then we must heapify the heap
+* When replacement value is greater than parent, fix heap above. Otherwise, fix heap below
+    * Fix heap above - same as insert. Swap replacement value with parent
+    * Fix heap below - swap the replacement value with the larger of its two children
+    * Rinse and repeat in both cases until the replacement value is in its correct position
+    * Will only need to fix up or down, not both
+
+**Priority Queue**
+* Concept of using a heap as a queue that makes the highest (or lowest) priority item available in constant time.
+
+**Heapsort**
+* We know the root has the largest value
+* Swap root with last element in the array
+* Heapify the tree, but exclude the last node.
+* After heapify, second largest element is at the root
+* Rinse and repeat
+* O(n*log*n)
