@@ -68,3 +68,38 @@ Suppose we add another line underneath our second instruction: `RUN apk add --up
     * `>docker commit -c "CMD 'redis-server'" <containerID>` -> Use docker commit to specify the start command.
     * `>docker commit -c 'CMD ["redis-server"]' CONTAINERID` -> Non-Windows version of the above command.
 * This is cool, but you really want to use the Dockerfile approach.
+
+# Section 4: Making Real Projects with Docker
+
+Goal is to setup a node.js webapp to run via a container. Idea is that we're going to do things wrong and run into common errors along the way. Using `>docker build .` along the way. (`>docker build -t bigbrass/simpleweb .` is better though)
+
+Note that 'alpine' is a term in the Docker world for an image that is as small and streamlined as possible.
+
+First error -> `/bin/sh: npm: not found`
+* `FROM alpine`, `RUN npm Install`
+* Issue is that the alpine image does not have node package manager (npm) or even node.js installed.
+* Resolution is to find a different base image, or include an additional command that will install node.js and npm in the image.
+
+Second error -> `no such file or directory, open '/package.json'`
+* `FROM alpine`, `RUN npm Install`
+* Issue is that despite our package.json file being in our project, we haven't done anything to include that file in the container.
+* Resolution is to include project files/folders to the filesystem inside the temporary container used during the build process.
+* Initially used `COPY ./ ./` but that's not best practice because, well, we might have a collision with the filesystem. Later used the `WORKDIR /usr/app` command to specify the working directory which, later on the COPY step, means that all our files get sent into that working directory. Furthermore, opening a shell in the running container will start in this directory rather than the root.
+
+At this point, our build works. Then do `>docker run bigbrass/simpleweb` and see console output.
+
+Third error -> Cannot reach site at localhost:8080. (192.168.99.100:8080 for windows. . . according to the video, but localhost:8080 works for me)
+* Issue is that by default no traffic to your computer is going to be directed into the container.
+* Resolution is to setup an explicit port mapping to allow this traffic into the container.
+* Note this is only talking about incoming requests. Containers can make outgoing requests just fine.
+* Port-forwarding is strictly a runtime constraint, which is to say it isn't at the image level, it is at the running of a container level.
+* `>docker run -p <1st port>:<2nd port> <image id>` -> Route incoming requests to 1st port on local host to ... 2nd port inside the container.
+
+**Minimizing Cache Busting and Rebuilds**
+Naturally, changing say index.js will require an entire rebuild of the docker image for the change to show up in the resulting container. This is not great, but we can avoid this by providing a slightly different but effectively identical flow:
+
+`COPY ./package.json ./`
+`RUN npm install`
+`COPY ./ ./`
+
+Now changes to index.js are moved to after the dependency installation step, so we minimize the number of rebuilds necessary for minor changes.
