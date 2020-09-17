@@ -103,3 +103,22 @@ Naturally, changing say index.js will require an entire rebuild of the docker im
 `COPY ./ ./`
 
 Now changes to index.js are moved to after the dependency installation step, so we minimize the number of rebuilds necessary for minor changes.
+
+# Section 5: Docker Compose with Multiple Local Containers
+
+Going to build a visitor counter app (multiple node apps connected to a single redis instance).
+
+docker-compose exists to avoid writing out a lot of commands with the docker cli.
+
+Inside the simpleweb folder: `>docker-compose up` and then visit localhost:4001
+
+The communication between the node app and the redis-server is done by the `host: 'redis-server'` part of index.js. Handy that we need only use the name of the container.
+
+* Launch in background: `>docker-compose up -d`
+* Stop Containers: `>docker-compose down`
+
+Runs in bundled form within Docker Desktop, sweet. CLI-wise, can use `>docker-compose ps` to see the same thing.
+
+Made a change (`process.exit(0)`) to ensure that it crashes. `>docker-compose up --build` to ensure that our change is propagated.
+
+Within the docker-compose.yml file, specified the `restart: always` policy, the behavior of which should not be surprising at all. Other restart policies are `"no"`, `on-failure` and `unless-stopped`.
